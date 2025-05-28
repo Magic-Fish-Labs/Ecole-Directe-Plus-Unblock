@@ -16,14 +16,14 @@ chrome.declarativeNetRequest.updateEnabledRulesets(
 	{ enableRulesetIds: ["change_origin"] }
 )
 
-chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
-	if (changeInfo.status === "complete") {
-		chrome.scripting.executeScript({
-			target: { tabId: tab.id },
-			files: ["content-scripts/DOMInjectionBridge.js"]
-		});
-	}
-});
+// chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+// 	if (changeInfo.status === "complete") {
+// 		chrome.scripting.executeScript({
+// 			target: { tabId: tab.id },
+// 			files: ["content-scripts/DOMInjectionBridge.js"]
+// 		});
+// 	}
+// });
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 	if (message.type === "GET_EXTENSION_INFO") {

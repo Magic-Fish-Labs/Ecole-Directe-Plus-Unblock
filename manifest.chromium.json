@@ -3,7 +3,6 @@
 	"permissions": [
 		"declarativeNetRequest",
 		"declarativeNetRequestWithHostAccess",
-		"scripting",
 		"activeTab",
 		"webRequest"
 	],
