@@ -115,7 +115,7 @@ function interceptCookieGTK(details) {
 	return { responseHeaders: headers };
 }
 
-chrome.webRequest.onHeadersRecieved.addListener(
+chrome.webRequest.onHeadersReceived.addListener(
 	interceptCookieGTK,
 	{ urls: ["*://api.ecoledirecte.com/v3/login.awp*"] },
 	userBrowser === "Firefox" ? ["responseHeaders"] : ["responseHeaders", "extraHeaders"]
