@@ -1,13 +1,11 @@
 function getBrowser() {
-	if (typeof chrome !== "undefined") {
-		if (typeof browser !== "undefined") {
-			return "Firefox";
-		} else {
-			return "Chrome";
-		}
-	} else {
-		return "Edge";
+	if (typeof browser !== "undefined" && browser.runtime?.getBrowserInfo) {
+		return "Firefox";
 	}
+	if (typeof chrome !== "undefined") {
+		return "Chrome";
+	}
+	return "Edge";
 }
 
 const userBrowser = getBrowser();
@@ -117,7 +115,7 @@ function interceptCookieGTK(details) {
 	return { responseHeaders: headers };
 }
 
-chrome.webRequest.onResponseStarted.addListener(
+chrome.webRequest.onHeadersRecieved.addListener(
 	interceptCookieGTK,
 	{ urls: ["*://api.ecoledirecte.com/v3/login.awp*"] },
 	userBrowser === "Firefox" ? ["responseHeaders"] : ["responseHeaders", "extraHeaders"]
